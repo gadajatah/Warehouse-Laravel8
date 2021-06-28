@@ -35,13 +35,13 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Beranda</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Barang</a>
+                    <a class="nav-link" href="{{ route('item.all') }}">Barang</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Barang Keluar</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Petugas</a>
+                    <a class="nav-link" href="{{ route('worker.all') }}">Petugas</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -8,16 +8,32 @@
  * @license MIT
  */
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\WorkerController;
+use App\Models\Worker;
 use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/petugas/create', [HomeController::class, 'create'])->name('worker.create');
-Route::post('/petugas/create', [HomeController::class, 'store']);
-Route::get('/petugas/{id}/edit', [HomeController::class, 'edit'])->name('worker.edit');
-Route::patch('petugas/{id}/edit', [HomeController::class, 'update'])->name('worker.update');
-Route::get('/petugas/{id}/delete', [HomeController::class, 'destroy'])->name('worker.destroy');
+
+
+Route::get('/petugas', [WorkerController::class, 'index'])->name('worker.all');
+Route::get('/petugas/create', [WorkerController::class, 'create'])->name('worker.create');
+Route::post('/petugas/create', [WorkerController::class, 'store']);
+Route::get('/petugas/{id}/edit', [WorkerController::class, 'edit'])->name('worker.edit');
+Route::patch('petugas/{id}/edit', [WorkerController::class, 'update'])->name('worker.update');
+Route::get('/petugas/{id}/delete', [WorkerController::class, 'destroy'])->name('worker.destroy');
+
+Route::get('/barang', [ItemController::class, 'index'])->name('item.all');
+Route::get('/barang/create', [ItemController::class, 'create'])->name('item.create');
+Route::post('/barang/create', [ItemController::class, 'store']);
+
+
+
+
+
+
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         $workers = Worker::get()->all();
+        $items = Item::get()->all();
         $pekerja = count($workers);
-        return view('home', compact('workers', 'pekerja'));
+        $barang = count($items);
+        return view('home', compact('workers', 'pekerja', 'items', 'barang'));
     }
     /**
      * Tampil Data pada Dashboard
@@ -41,25 +44,7 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        // Validated Field
-       $rules = array(
-        'nama' => 'required',
-        'jenkel' => 'required',
-        'username' => 'required',
-        'password' => 'required',
-       );
-       $validated = $request->validate($rules);
-        //    Input Data
-       $worker = new Worker();
-       $worker->nama = $validated['nama'];
-       $worker->jenkel = $validated['jenkel'];
-       $worker->username = $validated['username'];
-       $worker->password = $validated['password'];
-       
-       if (!$worker->save()) {
-           return redirect()->route('create')->with('error', 'Petugas gagal dibuat.');;
-       }
-       return redirect()->route('home')->with('success', 'Petugas ' . $validated['nama'] . ' berhasil dibuat!');
+        // 
     }
     /**
      * Simpan Data
@@ -67,8 +52,7 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        $worker = Worker::findOrFail($id);
-        return view('worker.edit', compact('worker'));
+        // 
     }
     /**
      * Edit data
@@ -76,27 +60,7 @@ class HomeController extends Controller
      */
     public function update($id)
     {
-         // Validated Field
-       $rules = array(
-        'nama' => 'required',
-        'jenkel' => 'required',
-        'username' => 'required',
-        'password' => 'required',
-       );
-       $validated = request()->validate($rules);
-       $worker = Worker::findOrFail($id);
-       $check = $worker->update(
-           array(
-               'nama' => $validated['nama'],
-               'jenkel' => $validated['jenkel'],
-               'username' => $validated['username'],
-               'password' => $validated['password'],
-           )
-       );
-       if (!$check) {
-           return redirect()->route('worker.update')->with('errors', 'Petugas Gagal di Update!');
-       }
-       return redirect()->route('home')->with('success', 'Petugas ' . $validated['nama'] . ' berhasil di Edit!');
+      //    
     }
     /**
      * Update Data
@@ -104,10 +68,7 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        $worker = Worker::findOrFail($id);
-        $worker->delete();
-        
-        return redirect()->route('home')->with('success', 'Petugas Berhasil Dihapus!');
+        // 
     }
     /**
      * Hapus Data
